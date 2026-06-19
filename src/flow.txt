@@ -1,0 +1,64 @@
+Full Execution Flow (VERY IMPORTANT)
+
+1. Frontend sends GraphQL query
+        ↓
+2. Express receives /graphql request
+        ↓
+3. graphql() parses query
+        ↓
+4. Matches resolver (user/users)
+        ↓
+5. Resolver calls UserService
+        ↓
+6. UserService runs SQL query
+        ↓
+7. PostgreSQL returns data
+        ↓
+8. Resolver returns data to GraphQL engine
+        ↓
+9. GraphQL formats response
+        ↓
+10. JSON sent to frontend
+
+
+
+✔️ Option 1: Postman (recommended)
+Step 1
+
+Open Postman
+
+Step 2
+
+Create request:
+
+Method: POST
+URL: http://localhost:4000/graphql
+Step 3
+
+Go to Body → raw → JSON
+
+Example 1: Get all users
+{
+  "query": "query { users { userId userName groupCd } }"
+}
+
+{
+  "query": "query { users { userId userName modules { ModuleId ModuleName } } }"
+}
+
+Example 2: Get single user
+{
+  "query": "query { user(userId: 101) { userId userName groupCd } }"
+}
+
+{
+  "query": "query { user(userId:\"101\") { userId userName modules { ModuleId ModuleName } } }"
+}
+
+
+
+✔️ Option 2: curl (terminal)
+Get all users
+curl -X POST http://localhost:4000/graphql \
+-H "Content-Type: application/json" \
+-d '{"query":"query { users { userId userName groupCd } }"}'
