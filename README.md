@@ -68,8 +68,3 @@ curl -X POST http://localhost:4000/graphql \
 - `src/services/userService.js` - Business logic (currently uses mock DB)
 - `src/db/mockDb.js` - In-memory mock users/modules
 - `src/db/Db.js` - IBM DB query helper (not wired to current service)
-
-## Notes
-- The mock DB returns a user’s `modules` by filtering `user_Modules` where `m.userId === user.userId`.
-- To switch to IBM DB for real data, the active methods in `src/services/userService.js` would need to use `query()` from `src/db/Db.js`.
-
