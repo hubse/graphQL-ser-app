@@ -60,11 +60,3 @@ curl -X POST http://localhost:4000/graphql \
     "query": "query { user(userId: 101) { userId userName groupCd modules { ModuleId ModuleName } } }"
   }'
 ```
-
-## Project Structure
-- `src/server.js` - Express server + GraphQL endpoint
-- `src/graphql/schema.js` - GraphQL type definitions
-- `src/graphql/resolvers.js` - Resolver wiring (calls `UserService`)
-- `src/services/userService.js` - Business logic (currently uses mock DB)
-- `src/db/mockDb.js` - In-memory mock users/modules
-- `src/db/Db.js` - IBM DB query helper (not wired to current service)
